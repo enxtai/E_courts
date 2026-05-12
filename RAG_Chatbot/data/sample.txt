@@ -1,0 +1,77 @@
+Indian Kanoon: A Comprehensive Overview
+
+Indian Kanoon is a free legal search engine that provides access to Indian law. It indexes court judgments, statutes, and legal documents from various Indian courts, including the Supreme Court of India, High Courts, and various tribunals. The platform was created to make legal information accessible to all citizens.
+
+History and Mission
+Indian Kanoon was founded in 2008 by Sushant Sinha, a software engineer and a graduate of IIT Madras. The platform's primary mission is to democratize access to legal information. Before Indian Kanoon, access to court judgments required expensive subscriptions to legal databases or physical visits to court registries. Indian Kanoon changed this by providing free and open access.
+
+Key Features
+1. Full-text search of court judgments and statutes
+2. Case law citations and cross-references
+3. Chronological listing of judgments by court and year
+4. Access to Central and State Acts
+5. Daily updates with the latest judgments
+6. API access for developers and researchers
+
+Court Coverage
+Indian Kanoon covers judgments from the following courts:
+- Supreme Court of India: All judgments from 1950 onwards
+- High Courts: Judgments from all 25 High Courts across India
+- District Courts: Selected judgments from district courts
+- Tribunals: National Green Tribunal, ITAT, SAT, and others
+- Commissions: National and State Consumer Commissions
+
+Technical Architecture
+The platform uses a combination of web crawling, natural language processing, and information retrieval techniques to index and serve legal documents. The search engine supports complex legal queries including citation search, act section search, and full-text search.
+
+Legal Document Structure
+Indian court judgments typically follow a structured format:
+1. Case Number and Court Name
+2. Parties involved (Petitioner vs. Respondent)
+3. Date of Judgment
+4. Bench composition (Judges hearing the case)
+5. Head Notes summarizing the key legal points
+6. Body of the Judgment including facts, arguments, and reasoning
+7. Order/Decree specifying the court's decision
+8. Citations to relevant statutes and precedents
+
+Importance in Indian Legal System
+Indian Kanoon has become an indispensable tool for:
+- Lawyers: For case research and precedent analysis
+- Judges: For reference during hearings
+- Law Students: For academic research and moot court preparation
+- Citizens: For understanding their legal rights
+- Journalists: For covering legal developments
+- Researchers: For conducting empirical legal studies
+
+API and Data Access
+Indian Kanoon provides an API that allows developers to:
+- Search for documents programmatically
+- Retrieve full text of judgments
+- Access metadata like court name, date, and bench
+- Filter results by court, year, and document type
+
+The API is rate-limited and requires registration for commercial use.
+
+Recent Developments
+Indian Kanoon has expanded its coverage to include:
+- District court judgments from select states
+- Tribunal orders from specialized bodies
+- Historical judgments from the pre-independence era
+- Integration with other legal databases
+
+Challenges and Limitations
+- Not all judgments are digitized, especially from lower courts
+- OCR errors in older scanned documents
+- Varying formats across different courts
+- Real-time updates depend on court websites' availability
+- Language barriers with judgments in regional languages
+
+Impact on Legal Technology
+Indian Kanoon has inspired and enabled numerous legal technology innovations:
+- Legal analytics platforms use Indian Kanoon data
+- AI-powered legal research tools leverage its database
+- Academic institutions use it for empirical legal research
+- Government agencies reference it for policy-making
+
+The platform continues to serve as a foundational resource for India's growing legal technology ecosystem, making justice more accessible and transparent for all citizens.
