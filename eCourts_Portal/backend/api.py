@@ -17,7 +17,7 @@ from dotenv import load_dotenv
 import chromadb
 
 # Try loading env from RAG_Chatbot where GOOGLE_API_KEY is stored
-load_dotenv(r"D:\ETL\RAG_Chatbot\.env")
+load_dotenv(os.path.join(os.path.dirname(os.getcwd()), "RAG_Chatbot", ".env"))
 
 try:
     from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
@@ -484,8 +484,9 @@ async def rag_ingest(
                 return
                 
             yield "data: [PROCESS] Spawning ingest.py subprocess...\n\n"
-            python_exe = sys.executable if "llmenv" in sys.executable else r"c:\users\admin\.conda\envs\llmenv\python.exe"
-            ingest_script = r"d:\ETL\RAG_Chatbot\ingest.py"
+            python_exe = sys.executable
+            ingest_script = os.path.join(os.path.dirname(os.getcwd()), "RAG_Chatbot", "ingest.py")
+            cwd_path = os.path.join(os.path.dirname(os.getcwd()), "RAG_Chatbot")
             
             import subprocess
             process = subprocess.Popen(
@@ -495,7 +496,7 @@ async def rag_ingest(
                 text=True,
                 encoding='utf-8',
                 errors='replace',
-                cwd=r"d:\ETL\RAG_Chatbot"
+                cwd=cwd_path
             )
             
             while True:
