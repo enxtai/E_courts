@@ -1,3 +1,11 @@
 fastapi
 uvicorn
 pypdf
+python-multipart
+pymupdf
+python-dotenv
+chromadb
+langchain-core
+langchain-ollama
+langchain-chroma
+langchain-google-genai
