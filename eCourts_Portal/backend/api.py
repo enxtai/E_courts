@@ -16,8 +16,8 @@ import base64
 from dotenv import load_dotenv
 import chromadb
 
-# Try loading env from RAG_Chatbot where GOOGLE_API_KEY is stored
-load_dotenv(os.path.join(os.path.dirname(os.getcwd()), "RAG_Chatbot", ".env"))
+# Load env from local backend directory
+load_dotenv()
 
 try:
     from langchain_core.prompts import ChatPromptTemplate, MessagesPlaceholder
