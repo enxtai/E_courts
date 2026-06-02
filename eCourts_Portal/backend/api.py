@@ -225,6 +225,40 @@ def get_judge_profile(name: str):
         "cases": cases
     }
     
+import re
+
+def parse_history(text, year):
+    # Improved parser: looks for dates and following text
+    events = []
+    
+    # Matches patterns like:
+    # "March 9, 1949" or "9 March, 1949"
+    # Followed by optional year
+    month_pattern = r'(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?'
+    date_pattern = rf'(?:\d{{1,2}}(?:st|nd|rd|th)?\s+{month_pattern}|{month_pattern}\s+\d{{1,2}}(?:st|nd|rd|th)?)(?:\s*,?\s*\d{{4}})?'
+    
+    # Split text into sentences to find events
+    sentences = re.split(r'[.!?]\s+', text)
+    
+    for sentence in sentences:
+        match = re.search(date_pattern, sentence, re.IGNORECASE)
+        if match:
+            date_str = match.group(0).strip()
+            # If no year in date string, add the case year
+            if not re.search(r'\d{4}', date_str):
+                formatted_date = f"{date_str}, {year}"
+            else:
+                formatted_date = date_str
+            
+            events.append({
+                "date": formatted_date,
+                "title": "Case Event",
+                "description": sentence.strip()
+            })
+            
+    return events
+
+
 @app.get("/api/case/{case_id}")
 def get_case(case_id: int):
     conn = get_db()
@@ -236,7 +270,18 @@ def get_case(case_id: int):
     if not row:
         return {"error": "Case not found"}
         
-    return dict(row)
+    case_dict = dict(row)
+    
+    # Parse history
+    year = case_dict.get("year", str(2025)) # Default to current year if missing
+    case_dict["history"] = parse_history(case_dict.get("extracted_text", ""), year)
+    
+    # Prepend year to extracted_text to assist frontend parsing
+    if case_dict.get("year") and case_dict.get("extracted_text"):
+        case_dict["extracted_text"] = f"Year: {case_dict['year']}\n\n{case_dict['extracted_text']}"
+        
+    return case_dict
+
     
 @app.get("/api/stats")
 def get_stats():

@@ -213,95 +213,35 @@ export default function CaseProfile({ params }: { params: Promise<{ cnr: string 
                 </h2>
 
                 <div className="relative max-sm:pr-2 sm:px-4 py-2">
-                  <div className="hidden sm:block absolute left-1/2 top-0 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary/20 via-primary/30 to-primary/10 rounded-full z-0"></div>
+                  {data.history && data.history.length > 0 && (
+                    <div className="hidden sm:block absolute left-1/2 top-0 transform -translate-x-1/2 h-full w-1 bg-gradient-to-b from-primary/20 via-primary/30 to-primary/10 rounded-full z-0"></div>
+                  )}
                   <div className="space-y-8 max-sm:pl-2">
 
-                    {/* Final Status Node */}
-                    <div className="relative z-10">
-                      <div className="hidden sm:flex items-start">
-                        <div className="text-right w-1/2 pr-8 space-y-3"></div>
-                        <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-card shadow-md border-2 border-primary text-primary">
-                          <Scale className="w-5 h-5" />
-                        </div>
-                        <div className="w-1/2 pl-8 space-y-3">
-                          <div className="bg-zinc-100 dark:bg-zinc-800 border border-border border-l-4 border-l-foreground rounded-xl max-w-md w-full p-4">
-                            <div className="flex items-center gap-2 mb-1">
-                              <Gavel className="h-5 w-5 text-foreground" />
-                              <p className="text-sm font-medium text-foreground">Decision Rendered</p>
+                    {data.history && data.history.length > 0 ? (
+                      data.history.map((event: any, index: number) => (
+                        <div key={index} className="relative z-10">
+                          <div className="hidden sm:flex items-start">
+                            <div className="text-right w-1/2 pr-8 space-y-3">
+                              <div className="bg-card border border-border border-r-4 border-r-primary p-4 rounded-lg shadow-sm ml-auto max-w-md w-full text-left">
+                                <p className="text-sm font-medium text-primary">{event.date}</p>
+                                <div className="flex items-center gap-2 mt-1">
+                                  <FileText className="h-4 w-4 text-primary" />
+                                  <h4 className="font-medium text-sm text-foreground">{event.title}</h4>
+                                </div>
+                                <p className="text-sm text-muted-foreground mt-1">{event.description}</p>
+                              </div>
                             </div>
-                            <p className="text-sm text-muted-foreground">Final Status</p>
+                            <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-card shadow-md border-2 border-primary text-primary">
+                              <Clock className="w-5 h-5" />
+                            </div>
+                            <div className="w-1/2 pl-8 space-y-3"></div>
                           </div>
                         </div>
-                      </div>
-                    </div>
-
-                    {/* Timeline Node 1 */}
-                    <div className="relative z-10">
-                      <div className="hidden sm:flex items-start">
-                        <div className="text-right w-1/2 pr-8 space-y-3">
-                          <div className="bg-card border border-border border-r-4 border-r-primary p-4 rounded-lg shadow-sm ml-auto max-w-md w-full text-left">
-                            <p className="text-sm font-medium text-primary">7 Feb {year + 1}</p>
-                            <div className="flex items-center gap-2 mt-1">
-                              <FileText className="h-4 w-4 text-primary" />
-                              <h4 className="font-medium text-sm text-foreground">Evidence</h4>
-                            </div>
-                            <p className="text-sm text-muted-foreground mt-1">Before: {judges}</p>
-                          </div>
-                        </div>
-                        <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-card shadow-md border-2 border-primary text-primary">
-                          <Clock className="w-5 h-5" />
-                        </div>
-                        <div className="w-1/2 pl-8 space-y-3"></div>
-                      </div>
-                    </div>
-
-                    {/* Timeline Node 2 (First Hearing) */}
-                    <div className="relative z-10">
-                      <div className="hidden sm:flex items-start">
-                        <div className="text-right w-1/2 pr-8 space-y-3">
-                          <div className="bg-card border border-border border-r-4 border-r-primary p-4 rounded-lg shadow-sm ml-auto max-w-md w-full text-left">
-                            <p className="text-sm font-medium text-primary">27 Sept {year}</p>
-                            <div className="flex items-center gap-2 mt-1">
-                              <FileText className="h-4 w-4 text-primary" />
-                              <h4 className="font-medium text-sm text-foreground">First Hearing</h4>
-                            </div>
-                            <p className="text-sm text-muted-foreground mt-1">Initial hearing scheduled</p>
-                          </div>
-                        </div>
-                        <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-card shadow-md border-2 border-primary text-primary">
-                          <Clock className="w-5 h-5" />
-                        </div>
-                        <div className="w-1/2 pl-8 space-y-3"></div>
-                      </div>
-                    </div>
-
-                    {/* Timeline Node 3 (Case Registered) */}
-                    <div className="relative z-10">
-                      <div className="hidden sm:flex items-start">
-                        <div className="text-right w-1/2 pr-8 space-y-3">
-                          <div className="bg-card border border-border border-r-4 border-r-primary p-4 rounded-lg shadow-sm ml-auto max-w-md w-full text-left">
-                            <p className="text-sm font-medium text-primary">20 Sept {year}</p>
-                            <div className="flex items-center gap-2 mt-1">
-                              <Gavel className="h-4 w-4 text-primary" />
-                              <h4 className="font-medium text-sm text-foreground">Case Registered</h4>
-                            </div>
-                            <p className="text-sm text-muted-foreground mt-1">Registration No: 2385/{year}</p>
-                          </div>
-                        </div>
-                        <div className="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center w-10 h-10 rounded-full bg-card shadow-md border-2 border-primary text-primary">
-                          <Split className="w-5 h-5" />
-                        </div>
-                        <div className="w-1/2 pl-8 space-y-3">
-                          <div className="bg-primary/5 border border-primary/20 border-l-4 border-l-primary p-4 rounded-xl max-w-md w-full">
-                            <div className="flex items-center gap-2 mb-1">
-                              <Gavel className="h-4 w-4 text-primary" />
-                              <p className="text-sm font-medium text-foreground">Case Filed</p>
-                            </div>
-                            <p className="text-xs text-muted-foreground mt-1">Filing No: 8081/{year}<br />Purpose: EVIDENCE</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                      ))
+                    ) : (
+                      <p className="text-center text-muted-foreground">No case history available.</p>
+                    )}
 
                   </div>
                 </div>

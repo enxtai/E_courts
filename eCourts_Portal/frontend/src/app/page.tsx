@@ -218,21 +218,21 @@ export default function eCourtsPortal() {
                           
                           <div className="md:w-auto w-full self-start mt-2 md:mt-0 flex flex-col gap-3">
                               {activeTab === 'lawyers' && (
-                                <Link href={`/lawyer/${encodeURIComponent(query || (res.lawyers ? res.lawyers.split(',')[0].trim() : 'Unknown'))}`} className="w-full">
+                                <Link href={`/lawyer/${encodeURIComponent(res.lawyers ? res.lawyers.split(',')[0].trim() : 'Unknown')}`} className="w-full">
                                   <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-secondary hover:bg-foreground hover:text-background text-foreground rounded-xl text-sm font-bold transition-all border border-border">
                                     <Activity className="w-4 h-4" /> AI Analytics
                                   </button>
                                 </Link>
                               )}
                               {activeTab === 'litigants' && (
-                                <Link href={`/litigant/${encodeURIComponent(query || res.litigant_petitioner || 'Unknown')}`} className="w-full">
+                                <Link href={`/litigant/${encodeURIComponent(res.litigant_petitioner || 'Unknown')}`} className="w-full">
                                   <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-secondary hover:bg-foreground hover:text-background text-foreground rounded-xl text-sm font-bold transition-all border border-border">
                                     <Eye className="w-4 h-4" /> View Entities
                                   </button>
                                 </Link>
                               )}
                               {activeTab === 'judges' && (
-                                <Link href={`/judge/${encodeURIComponent(query || (res.judges ? res.judges.split(',')[0].trim() : 'Unknown'))}`} className="w-full">
+                                <Link href={`/judge/${encodeURIComponent(res.judges ? res.judges.split(',')[0].trim() : 'Unknown')}`} className="w-full">
                                   <button className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-secondary hover:bg-foreground hover:text-background text-foreground rounded-xl text-sm font-bold transition-all border border-border">
                                     <Eye className="w-4 h-4" /> View Bench
                                   </button>
