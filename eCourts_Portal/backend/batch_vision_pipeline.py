@@ -78,7 +78,18 @@ def main():
                 
             msg = HumanMessage(content=content)
             
-            res = structured_llm.invoke([msg])
+            max_retries = 5
+            for attempt in range(max_retries):
+                try:
+                    res = structured_llm.invoke([msg])
+                    break # Success, exit loop
+                except Exception as e:
+                    if attempt < max_retries - 1:
+                        wait_time = (2 ** attempt) * 5 # 5, 10, 20, 40, 80 seconds
+                        print(f"  Attempt {attempt+1} failed: {e}. Retrying in {wait_time}s...")
+                        time.sleep(wait_time)
+                    else:
+                        raise e # Max retries reached, raise the exception
             
             print(f"  Title: {res.title}")
             print(f"  Judges: {res.judges}")

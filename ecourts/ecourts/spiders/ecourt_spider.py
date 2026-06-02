@@ -177,7 +177,6 @@ class EcourtSpider(scrapy.Spider):
                         select.value = "{comp["value"]}";
                         funShowDefaultTab('complex'); 
                         set_data();
-                        set_state();
                     }}''')
                     
                     # Call the actual data processing logic
