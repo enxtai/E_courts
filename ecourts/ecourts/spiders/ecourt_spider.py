@@ -57,8 +57,8 @@ class EcourtSpider(scrapy.Spider):
                 self.logger.error(f"Error loading progress file: {e}")
 
         if HAS_WHISPER:
-            self.processor = WhisperProcessor.from_pretrained("openai/whisper-tiny.en")
-            self.model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-tiny.en")
+            self.processor = WhisperProcessor.from_pretrained("openai/whisper-small.en")
+            self.model = WhisperForConditionalGeneration.from_pretrained("openai/whisper-small.en")
 
     def save_progress(self, key):
         self.processed_keys.add(key)
