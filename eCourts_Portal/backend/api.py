@@ -394,7 +394,18 @@ async def vision_ingest(files: List[UploadFile] = File(...)):
                         llm = ChatGoogleGenerativeAI(model=model_name, temperature=0.1)
                         structured_llm = llm.with_structured_output(CaseMetadata)
                         
-                        res = await asyncio.to_thread(structured_llm.invoke, [msg])
+                        max_retries = 5
+                        for attempt in range(max_retries):
+                            try:
+                                res = await asyncio.to_thread(structured_llm.invoke, [msg])
+                                break # Success, exit loop
+                            except Exception as e:
+                                if attempt < max_retries - 1:
+                                    wait_time = (2 ** attempt) * 5 # 5, 10, 20, 40, 80 seconds
+                                    yield f"data: [RETRY] Attempt {attempt+1} failed: {e}. Retrying in {wait_time}s...\n\n"
+                                    await asyncio.sleep(wait_time)
+                                else:
+                                    raise e # Max retries reached, raise the exception
                         
                         if res.title and not merged_res["title"]: merged_res["title"] = res.title
                         if res.court and not merged_res["court"]: merged_res["court"] = res.court
